@@ -4,7 +4,7 @@ server:
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://8.134.168.60:3306/proj_db?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&&useSSL=true
+        url: jdbc:mysql://8.134.168.60:3306/shiro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&&useSSL=true
         connectionTimeout: 100000
         username: root
         password: shu@123
@@ -15,6 +15,12 @@ spring:
     redis:
         host: 8.134.168.60
         port: 6379
+        jedis:
+            pool:
+                max-idle: 8
+                min-idle: 0
+                max-active: 8
+                max-wait: -1
         password: shu@123
         timeout: 10000
         database: 0
@@ -26,7 +32,6 @@ spring:
 mybatis-plus:
     mapper-locations: classpath*:mapper/*.xml
     configuration:
-        # \u8FD9\u4E2A\u914D\u7F6E\u4F1A\u5C06\u6267\u884C\u7684sql\u6253\u5370\u51FA\u6765\uFF0C\u5728\u5F00\u53D1\u6216\u6D4B\u8BD5\u7684\u65F6\u5019\u53EF\u4EE5\u7528
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
         #\u4E00\u822C\u6211\u4EEC\u4F1A\u505A3\u4E2A\u914D\u7F6E,\u5176\u4F59\u9ED8\u8BA4\u5373\u53EF
         #    freemarker:
@@ -42,36 +47,4 @@ mybatis-plus:
         #spring.datasource.username=root
         #spring.datasource.password=shu@123
         #spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
-        #mybatis.configuration.lazy-loading-enabled=true
-        #mybatis.configuration.lazy-load-trigger-methods=clone
-        #mybatis.mapper-locations=classpath:cn/wolfcode/*/mapper/*Mapper.xml
-        #mybatis.type-aliases-package=cn.wolfcode.sb.domain
-        #\u6253\u5370SQL\u65E5\u5FD7
-        #logging.evel.cn.wolfcode.crm.mapper=trace
-        #SpringBoot\u9ED8\u8BA4\u4F18\u5148\u9009\u62E9CGLIB\u4EE3\u7406,\u5982\u679C\u9700\u8981\u6539\u4E3A\u4F18\u5148\u4F7F\u7528JDK\u4EE3\u7406,\u9700\u8981\u505A\u4EE5\u4E0B\u914D\u7F6E
-        #spring.aop.proxy-target-class=false #\u4F18\u5148\u4F7F\u7528JDK\u4EE3\u7406
-        #\u4E00\u822C\u6211\u4EEC\u4F1A\u505A3\u4E2A\u914D\u7F6E,\u5176\u4F59\u9ED8\u8BA4\u5373\u53EF
-        #\u66B4\u9732session\u5BF9\u8C61\u7684\u5C5E\u6027
-        #\u914D\u7F6E\u4E3A\u4F20\u7EDF\u6A21\u5F0F\uFF0C\u7A7A\u503C\u81EA\u52A8\u5904\u7406
-        #spring.freemarker.settings.classic_compatible=true
-        ##\u91CD\u65B0\u6307\u5B9A\u6A21\u677F\u6587\u4EF6\u540E\u7F00 springboot 2.2.x \u540E \u9ED8\u8BA4\u540E\u7F00\u4E3A .ftlh
-        #spring.freemarker.suffix=.ftl
-        #knife4j:
-        #    enable: true
-        #    documents:
-        #    - group: Test Group
-        #    name: My Documents
-        #    locations: classpath:wiki/*
-        #    setting:
-        #    # default lang
-        #    language: en-US
-        #    # footer
-        #    enableFooter: false
-        #    enableFooterCustom: true
-        #    footerCustomContent: MIT | [Java \u5168\u6808](https://pdai.tech)
-        #    # header
-        #    enableHomeCustom: true
-        #    homeCustomLocation: classpath:wiki/README.md
-        #    # models
-        #    enableSwaggerModels: true
-        #    swaggerModelName: My Models
+

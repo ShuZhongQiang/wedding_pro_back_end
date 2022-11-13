@@ -16,13 +16,14 @@ import java.util.Set;
  * @date 2020/04/15 下午 02:43
  * @description:
  */
-@Service("ShiroServerImpl")
+@Service
 public class ShiroServerImpl implements ShiroServer {
     @Autowired
     private ShiroMapper shiroMapper;
 
     @Override
     public User login(String name, String u_Pwd) {
+        System.out.println("**********密码"+u_Pwd+"********用户"+name);
         return shiroMapper.login(name,u_Pwd);
     }
 

@@ -46,7 +46,7 @@ public class MyShiroRealm extends AuthorizingRealm {
          * 第二个参数是数据库的密码
          * 第三个参数是名字
          */
-        return new SimpleAuthenticationInfo(userList,userList.getU_pwd(),"");
+        return new SimpleAuthenticationInfo(userList,userList.getUPwd(),"");
 
     }
 
@@ -61,10 +61,10 @@ public class MyShiroRealm extends AuthorizingRealm {
         if (principal instanceof User) {
             User userLogin = (User) principal;
             //根据名字查询角色
-            Set<String> roles = shiroServer.seRoles(userLogin.getU_name());
+            Set<String> roles = shiroServer.seRoles(userLogin.getUName());
             authorizationInfo.addRoles(roles);
             //根据名字查询权限
-            Set<String> permissions = shiroServer.quanxian(userLogin.getU_name());
+            Set<String> permissions = shiroServer.quanxian(userLogin.getUName());
             authorizationInfo.addStringPermissions(permissions);
         }
         logger.info("---- 获取到以下权限 ----");

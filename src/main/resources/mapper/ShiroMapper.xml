@@ -1,23 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.wedding_pro_back_end.mapper.ShiroMapper">
-    <select id="login" resultType="User" parameterType="String">
-        SELECT `u_id`,`u_name`,`u_pwd` FROM `users`
+    <select id="login" resultType="com.example.wedding_pro_back_end.bean.dto.User">
+        SELECT
+        `u_id` as uId,
+        `u_name` as uName,
+        `u_pwd`  as uPwd
+        FROM `users`
         WHERE `u_name`= #{name} and `u_pwd` = #{u_pwd}
     </select>
-    <select id="seRoles" resultType="String" parameterType="String">
-         SELECT r.`r_name` FROM `user_role` ur
+    <select id="seRoles" resultType="java.lang.String">
+        SELECT r.`r_name` FROM `user_role` ur
         LEFT JOIN `users` u ON(ur.`u_id`=u.`u_id`)
         LEFT JOIN `roles` r ON(ur.`r_id`=r.`r_id`)
         WHERE u.`u_name`=#{userName}
     </select>
-    <select id="orders" resultType="Resources">
+    <select id="orders" resultType="com.example.wedding_pro_back_end.bean.dto.Resources">
         SELECT * FROM `resource` ORDER BY `orders`
     </select>
-    <select id="quanxian" resultType="String" parameterType="String">
-         SELECT  p.`p_name` FROM  `role_permission` rp
+    <select id="quanxian" resultType="java.lang.String" parameterType="String">
+        SELECT  p.`p_name` FROM  `role_permission` rp
         LEFT JOIN `permissions` p ON(rp.`p_id`=p.`p_id`)
         LEFT JOIN `roles` r ON(rp.`r_id`=r.`r_id`)
         WHERE r.`r_name`IN(SELECT r.`r_name` FROM `user_role` ur
