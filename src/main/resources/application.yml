@@ -4,16 +4,16 @@ server:
 spring:
     datasource:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://8.134.168.60:3306/shiro?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&&useSSL=true
+        url: *******
         connectionTimeout: 100000
         username: root
-        password: shu@123
+        password: *****
         type: com.alibaba.druid.pool.DruidDataSource
     mvc:
         pathmatch:
             matching-strategy: ANT_PATH_MATCHER
     redis:
-        host: 8.134.168.60
+        host: *****
         port: 6379
         jedis:
             pool:
@@ -21,7 +21,7 @@ spring:
                 min-idle: 0
                 max-active: 8
                 max-wait: -1
-        password: shu@123
+        password: ******
         timeout: 10000
         database: 0
 #shiro:
